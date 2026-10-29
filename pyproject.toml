@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "wave-demo"
+version = "0.1.0"
+description = "Local MediaPipe wave detection and voice commands with middleware-independent interfaces"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+  "mediapipe>=0.10.30,<2",
+  "opencv-contrib-python>=5,<6",
+  "numpy>=1.26,<3",
+  "sounddevice>=0.5,<1",
+  "soxr>=0.5,<2",
+  "silero-vad>=6.2,<7",
+  "onnxruntime>=1.20,<2",
+  "faster-whisper>=1.2,<2",
+  # faster-whisper 1.2's file decoder requires PyAV's metadata_errors argument.
+  "av>=14,<17",
+  "huggingface-hub>=0.34,<2",
+  "mlx-lm>=0.29,<1; sys_platform == 'darwin' and platform_machine == 'arm64'",
+]
+
+[project.scripts]
+gesture-demo = "wave_demo.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.12,<1"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/wave_demo"]

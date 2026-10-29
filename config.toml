@@ -1,0 +1,43 @@
+# Starting thresholds. Freeze and record this file before acceptance trials.
+[wave]
+fps = 20.0
+open_palm_threshold = 0.65
+use_landmark_openness = true
+min_extended_fingers = 3
+arm_seconds = 0.15
+min_palm_pixels = 35.0
+window_seconds = 2.2
+segment_palm_widths = 0.4
+min_observations = 8
+min_duration_seconds = 0.4
+max_gap_seconds = 0.2
+smoothing_seconds = 0.08
+jump_palm_widths = 1.5
+
+[audio]
+sample_rate = 16000
+vad_threshold = 0.5
+min_speech_seconds = 0.25
+pre_roll_seconds = 0.2
+end_silence_seconds = 0.7
+start_timeout_seconds = 10.0
+max_utterance_seconds = 15.0
+
+[speech]
+whisper_repo = "Systran/faster-whisper-base.en"
+llm_repo = "mlx-community/Qwen3-1.7B-4bit"
+voice = "Samantha"
+words_per_minute = 180
+max_tokens = 96
+cpu_threads = 4
+processing_timeout_seconds = 30.0
+
+[runtime]
+camera_index = 0
+width = 640
+height = 480
+cooldown_seconds = 2.0
+release_seconds = 0.5
+observation_max_age_seconds = 0.25
+mirror_preview = true
+
